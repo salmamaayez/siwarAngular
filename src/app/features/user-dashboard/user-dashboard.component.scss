@@ -1,48 +1,14 @@
 .dashboard-title {
-  color: #2d3436;
-  font-size: 28px;
-}
-
-.dashboard-card {
-  border-radius: 18px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  cursor: pointer;
-  background: #ffffff;
-  min-height: 300px;
-  border: none;
-}
-
-.dashboard-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-}
-
-.card-icon {
-  font-size: 48px;
-  color: #007bff;
-}
-
-.card-title {
-  font-weight: 600;
-  color: #2d3436;
-}
-.card-body {
-  padding: 30px 10px;
-}
-.card-gif {
-  width: 150px;
-  height: 150px;
-  object-fit: contain;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.gif-box {
-  width: 120px;
-  height: 120px;
-  background-image:url("../../../assets/gifs/drivingcar.gif");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-    display: block;        /* s’assure que le div est affiché */
-  margin: 0 auto; 
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem; /* taille plus grande */
+  color: #ffffff; /* contraste avec le background */
+  text-align: center; /* texte centré à l'intérieur du bloc */
+  margin: 4rem auto 5rem auto; /* centrer horizontalement avec auto */
+  padding: 1rem 2rem; /* espace autour du texte */
+  border-radius: 50px; /* arrondi style capsule */
+  background: rgba(0, 0, 0, 0.2); /* fond semi-transparent */
+  display: block; /* nécessaire pour margin auto */
+  max-width: fit-content; /* le bloc s’ajuste à la largeur du texte */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3); /* léger relief */
 }
