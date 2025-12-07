@@ -1,26 +1,59 @@
+/* Register Component Specific Styles */
+
+/* Input with icon support */
+.form-group {
+  position: relative;
+  
+  i, .icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-gray-500);
+    font-size: 1.2rem;
+    pointer-events: none;
+    transition: all var(--transition-base);
+  }
+  
+  input:focus ~ i,
+  input:focus ~ .icon {
+    color: var(--primary-purple);
+  }
+}
+
+/* Enhanced input error state */
 .input-error {
-  border: 2px solid red !important;
-  background-color: #ffe6e6;
+  border: 2px solid #ef4444 !important;
+  background-color: rgba(254, 226, 226, 0.3) !important;
+  animation: shake 0.5s;
 }
-.btn-enable{
-    width:100%;
-    padding: 0.9rem;
-    border-radius: 8px;
-    font-size: 1rem;
-    background: 0.3s;
-    background: #6366f1;
-    color:#fff;
-    border:none;
 
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
-.btn-disable{
-    width:100%;
-    padding: 0.9rem;
-    border-radius: 8px;
-    font-size: 1rem;
-    background: 0.3s;
-    background: #9697a0;
-    color:#fff;
-    border:none;
 
+/* Button states - now handled by global styles, but keeping for specificity */
+.btn-enable {
+  background: var(--gradient-primary);
+  cursor: pointer;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.btn-disable {
+  background: var(--color-gray-500);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Success state animation */
+.success-message {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-success);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  margin-top: 1rem;
+  animation: slideUp 0.4s ease;
+  border-left: 4px solid var(--color-success);
 }

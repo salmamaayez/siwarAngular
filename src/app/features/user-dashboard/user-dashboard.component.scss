@@ -1,14 +1,177 @@
+/* User Dashboard - Modern Premium Design */
+
+/* Main container */
+:host {
+  display: block;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  padding: 3rem 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Dashboard title */
 .dashboard-title {
   font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-size: 2.5rem; /* taille plus grande */
-  color: #ffffff; /* contraste avec le background */
-  text-align: center; /* texte centré à l'intérieur du bloc */
-  margin: 4rem auto 5rem auto; /* centrer horizontalement avec auto */
-  padding: 1rem 2rem; /* espace autour du texte */
-  border-radius: 50px; /* arrondi style capsule */
-  background: rgba(0, 0, 0, 0.2); /* fond semi-transparent */
-  display: block; /* nécessaire pour margin auto */
-  max-width: fit-content; /* le bloc s’ajuste à la largeur du texte */
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3); /* léger relief */
+  font-weight: 800;
+  font-size: 3rem;
+  color: #ffffff;
+  text-align: center;
+  margin: 0 auto 4rem;
+  padding: 1.5rem 3rem;
+  border-radius: var(--radius-full);
+  
+  /* Glassmorphism */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  
+  display: inline-block;
+  max-width: fit-content;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+  
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: -1px;
+  
+  animation: fadeIn 0.8s ease, float 4s ease-in-out infinite;
+  
+  /* Gradient text effect */
+  background: linear-gradient(135deg, #fff 0%, #f0f0ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  position: relative;
+  
+  &::before {
+    content: '🚗✨';
+    position: absolute;
+    left: -3rem;
+    font-size: 2.5rem;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-full);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Grid layout for cards */
+.row {
+  gap: 2rem;
+  
+  > * {
+    margin-bottom: 0;
+  }
+}
+
+/* Responsive title */
+@media (max-width: 768px) {
+  .dashboard-title {
+    font-size: 2rem;
+    padding: 1rem 2rem;
+    margin-bottom: 2.5rem;
+    
+    &::before {
+      left: -2rem;
+      font-size: 1.8rem;
+    }
+  }
+  
+  .container {
+    padding: 2rem 1rem;
+  }
+}
+
+/* Hero Section */
+.dashboard-hero {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: -3rem; /* Adjust based on title margin */
+  margin-bottom: 2rem;
+  font-weight: 300;
+  animation: slideUp 1s ease 0.2s both;
+}
+
+/* Quick Stats Pills */
+.quick-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  animation: fadeIn 1s ease 0.4s both;
+}
+
+.stat-pill {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+  cursor: default;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.pill-icon {
+  font-size: 1.2rem;
+  animation: bounce 2s infinite;
+}
+
+.pill-text {
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-subtitle {
+    font-size: 1.1rem;
+    margin-top: -2rem;
+  }
+  
+  .quick-stats {
+    gap: 1rem;
+  }
+  
+  .stat-pill {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
 }

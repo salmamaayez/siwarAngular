@@ -1,43 +1,72 @@
-<div class="container py-4">
+<div class="dashboard-container">
+  <div class="container">
 
-  <h2 class="text-center mb-4 fw-bold dashboard-title dashboard-title">
-    Tableau de bord utilisateur
-  </h2>
+    <!-- Hero Section -->
+    <header class="dashboard-hero">
+      <h1 class="dashboard-title">
+        Bienvenue sur CovoitAng
+      </h1>
+      <p class="hero-subtitle">
+        Voyagez moins cher, voyagez mieux 🌍
+      </p>
+    </header>
 
-  <div class="row g-4">
-
-  <div class="col-12 col-md-6 col-lg-3">
-    <app-dashboard-card
-      title="Modifier Profil"
-      description="Gérer vos informations personnelles"
-      routerLink="/userprofile"
-      animationPath="assets/animations/Profile.json">
-    </app-dashboard-card>
-  </div>
-<div class="col-12 col-md-6 col-lg-3">
-    <app-dashboard-card
-      title="Mes Covoiturages"
-      description="Consultez et gérez vos trajets publiés."
-      routerLink="/userrides"
-      animationPath="assets/animations/car.json">
-    </app-dashboard-card>
-</div>
-<div class="col-12 col-md-6 col-lg-3">
-    <app-dashboard-card
-      title="Publier un Trajet"
-      description="Ajoutez un nouveau covoiturage."
-      routerLink="/userridesnew"
-      animationPath="assets/animations/Globe.json">
-    </app-dashboard-card>
+    <!-- Quick Stats Overview (Optional, adds visual interest) -->
+    <div class="quick-stats mb-5">
+      <div class="stat-pill">
+        <span class="pill-icon">🚗</span>
+        <span class="pill-text">Prêt à partir ?</span>
+      </div>
+      <div class="stat-pill">
+        <span class="pill-icon">🌱</span>
+        <span class="pill-text">Écolo & Économe</span>
+      </div>
     </div>
-<div class="col-12 col-md-6 col-lg-3">
-    <app-dashboard-card
-      title="Statistiques"
-      description="Suivez vos performances."
-      routerLink="/userstats"
-      animationPath="assets/animations/Bar.json">
-    </app-dashboard-card>
-</div>
-  </div>
 
+    <!-- Main Navigation Grid -->
+    <div class="row g-4 justify-content-center">
+      
+      <!-- Profile Card -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <app-dashboard-card
+          title="Mon Profil"
+          description="Gérez vos informations et préférences"
+          routerLink="/userprofile"
+          animationPath="assets/animations/Profile.json">
+        </app-dashboard-card>
+      </div>
+
+      <!-- Rides Card -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <app-dashboard-card
+          title="Mes Trajets"
+          description="Historique et trajets à venir"
+          routerLink="/userrides"
+          animationPath="assets/animations/car.json">
+        </app-dashboard-card>
+      </div>
+
+      <!-- New Ride Card -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <app-dashboard-card
+          title="Publier"
+          description="Proposez un nouveau covoiturage"
+          routerLink="/userridesnew"
+          animationPath="assets/animations/Globe.json">
+        </app-dashboard-card>
+      </div>
+
+      <!-- Stats Card -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <app-dashboard-card
+          title="Statistiques"
+          description="Analysez votre impact écologique"
+          routerLink="/userstats"
+          animationPath="assets/animations/Bar.json">
+        </app-dashboard-card>
+      </div>
+
+    </div>
+    
+  </div>
 </div>

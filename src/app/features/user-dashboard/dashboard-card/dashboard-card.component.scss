@@ -1,47 +1,208 @@
-.dashboard-title {
-  color: #2d3436;
-  font-size: 28px;
-}
+/* Dashboard Card - Premium Modern Design */
 
 .dashboard-card {
-  border-radius: 18px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  border-radius: 24px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
-  background: #ffffff;
-  min-height: 300px;
+  min-height: 320px;
   border: none;
+  overflow: hidden;
+  
+  /* Glassmorphism effect */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+  
+  /* Gradient border effect */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 24px;
+    padding: 2px;
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.5), 
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.5)
+    );
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  /* Shimmer effect overlay */
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.15),
+      transparent
+    );
+    transform: rotate(30deg);
+    transition: left 0.6s ease;
+  }
 }
 
 .dashboard-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-}
-
-.card-icon {
-  font-size: 48px;
-  color: #007bff;
-}
-
-.card-title {
-  font-weight: 600;
-  color: #2d3436;
-}
-.card-body {
-  padding: 30px 10px;
-}
-.card-gif {
-  width: 150px;
-  height: 150px;
-  object-fit: contain;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.gif-box {
-  width: 150px;
-  height: 150px;
-  margin: 0 auto;
-}
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 
+    0 20px 40px rgba(99, 102, 241, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.4) inset,
+    0 0 30px rgba(99, 102, 241, 0.2);
   
+  &::before {
+    opacity: 1;
+  }
+  
+  &::after {
+    left: 100%;
+  }
+  
+  .card-body {
+    transform: translateZ(20px);
+  }
+  
+  .gif-box {
+    transform: scale(1.15) rotateY(5deg);
+  }
+  
+  .card-title {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+  }
+}
 
- 
+/* Card body */
+.card-body {
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.4s ease;
+}
+
+/* Lottie animation container */
+.gif-box {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  
+  /* Glow effect behind animation */
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.3), transparent 70%);
+    filter: blur(20px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+}
+
+.dashboard-card:hover .gif-box::before {
+  opacity: 1;
+}
+
+/* Card title */
+.card-title {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  transition: all 0.3s ease;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.5px;
+}
+
+/* Card description text */
+.text-muted {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.dashboard-card:hover .text-muted {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Badge/indicator (optional) */
+.card-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--gradient-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+/* Stagger animation on initial load */
+@for $i from 1 through 4 {
+  .dashboard-card:nth-child(#{$i}) {
+    animation: scaleIn 0.6s ease #{$i * 0.1}s both;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-card {
+    min-height: 280px;
+  }
+  
+  .gif-box {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+  }
+}
