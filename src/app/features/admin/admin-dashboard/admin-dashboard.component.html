@@ -1,0 +1,238 @@
+
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <i class="fas fa-car-side"></i>
+      <span>Covoit Admin</span>
+    </div>
+
+    <nav class="menu">
+      <a href="javascript:void(0)" *ngFor="let item of menuItems" 
+         [class.active]="item.active"
+         (click)="setActiveTab(item.id)">
+        <i class="fas" [ngClass]="item.icon"></i>
+        <span>{{ item.label }}</span>
+      </a>
+    </nav>
+    
+    <div class="user-profile">
+      <div class="avatar">
+        <i class="fas fa-user-circle"></i>
+      </div>
+      <div class="info">
+        <span class="name">Maaoui siwar</span>
+        <span class="role">Super Admin</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="top-bar">
+      <h1>{{ activeTab | titlecase }}</h1>
+      <div class="actions">
+        <button class="icon-btn">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="icon-btn">
+          <i class="fas fa-bell"></i>
+          <span class="badge">3</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- OVERVIEW TAB -->
+    <div *ngIf="activeTab === 'overview'" class="fade-in">
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card" *ngFor="let stat of stats; let i = index" [style.animation-delay]="i * 0.1 + 's'">
+          <div class="icon-box" [ngClass]="stat.color">
+            <i class="fas" [ngClass]="stat.icon"></i>
+          </div>
+          <div class="stat-info">
+            <h3>{{ stat.value }}</h3>
+            <p>{{ stat.title }}</p>
+            <span class="change positive">
+              <i class="fas fa-arrow-up"></i> {{ stat.change }}
+            </span>
+          </div>
+          <div class="bg-decoration"></div>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <!-- Chart Placeholder -->
+        <div class="card chart-card">
+          <div class="card-header">
+            <h3><i class="fas fa-chart-pie" style="color: #a855f7; margin-right: 8px;"></i> Revenue Analytics</h3>
+            <select>
+              <option>This Week</option>
+              <option>This Month</option>
+            </select>
+          </div>
+          <div class="chart-mockup">
+            <div class="bar" style="height: 40%"></div>
+            <div class="bar" style="height: 60%"></div>
+            <div class="bar" style="height: 35%"></div>
+            <div class="bar" style="height: 80%"></div>
+            <div class="bar" style="height: 55%"></div>
+            <div class="bar" style="height: 90%"></div>
+            <div class="bar" style="height: 45%"></div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="card activity-card">
+          <div class="card-header">
+            <h3>Recent Activity</h3>
+            <a href="#">View All</a>
+          </div>
+          <div class="activity-list">
+            <div class="activity-item" *ngFor="let item of recentActivity">
+              <div class="icon-circle" [ngClass]="item.iconColor">
+                  <i class="fas" [ngClass]="item.icon"></i>
+              </div>
+              <div class="content">
+                <h4>{{ item.user }}</h4>
+                <p>{{ item.action }}</p>
+              </div>
+              <span class="time">{{ item.time }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- USERS TAB -->
+    <div *ngIf="activeTab === 'users'" class="fade-in">
+      <div class="card table-card">
+        <div class="section-header">
+          <h3>All Users</h3>
+          <button class="primary-btn"><i class="fas fa-plus"></i> Add User</button>
+        </div>
+        <table class="glass-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Trips</th>
+              <th>Rating</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of usersList">
+              <td>
+                <div class="user-cell">
+                  <div class="avatar-sm">{{ user.name.charAt(0) }}</div>
+                  <div>
+                    <span class="name">{{ user.name }}</span>
+                    <span class="sub">{{ user.email }}</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="badge-role">{{ user.role }}</span></td>
+              <td><span class="badge-status" [ngClass]="user.status.toLowerCase()">{{ user.status }}</span></td>
+              <td>{{ user.trips }}</td>
+              <td><i class="fas fa-star text-yellow"></i> {{ user.rating }}</td>
+              <td>
+                <button class="icon-btn-sm"><i class="fas fa-edit"></i></button>
+                <button class="icon-btn-sm delete"><i class="fas fa-trash"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RIDES TAB -->
+    <div *ngIf="activeTab === 'rides'" class="fade-in">
+      <div class="rides-grid">
+        <div class="card ride-card" *ngFor="let ride of ridesList">
+          <div class="ride-header">
+            <span class="status" [ngClass]="ride.status.toLowerCase()">{{ ride.status }}</span>
+            <span class="price">{{ ride.price }}</span>
+          </div>
+          <div class="route">
+            <div class="point">
+              <div class="dot start"></div>
+              <span>{{ ride.from }}</span>
+            </div>
+            <div class="line"></div>
+            <div class="point">
+              <div class="dot end"></div>
+              <span>{{ ride.to }}</span>
+            </div>
+          </div>
+          <div class="ride-details">
+            <div class="detail"><i class="far fa-calendar"></i> {{ ride.date }}</div>
+            <div class="detail"><i class="far fa-user"></i> {{ ride.driver }}</div>
+          </div>
+          <div class="ride-footer">
+            <span class="seats"><i class="fas fa-chair"></i> {{ ride.seats }} seats</span>
+            <button class="small-btn">Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAYMENTS TAB -->
+    <div *ngIf="activeTab === 'payments'" class="fade-in">
+      <div class="card table-card">
+        <div class="section-header">
+          <h3>Transaction History</h3>
+          <button class="icon-btn"><i class="fas fa-download"></i></button>
+        </div>
+        <table class="glass-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User</th>
+              <th>Type</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let trx of paymentsList">
+              <td>{{ trx.id }}</td>
+              <td>{{ trx.user }}</td>
+              <td>{{ trx.type }}</td>
+              <td>{{ trx.date }}</td>
+              <td [class.positive]="trx.amount.startsWith('+')" [class.negative]="trx.amount.startsWith('-')">{{ trx.amount }}</td>
+              <td><span class="badge-status success">{{ trx.status }}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SETTINGS TAB -->
+    <div *ngIf="activeTab === 'settings'" class="fade-in">
+      <div class="settings-grid">
+        <div class="card">
+          <h3>Global Settings</h3>
+          <form class="settings-form">
+            <div class="form-group">
+              <label>Site Name</label>
+              <input type="text" value="CovoitAng">
+            </div>
+            <div class="form-group">
+              <label>Support Email</label>
+              <input type="email" value="support@covoitang.com">
+            </div>
+            <div class="form-group checkbox">
+              <input type="checkbox" id="maintenance" > 
+              <label for="maintenance">Maintenance Mode</label>
+            </div>
+            <button class="primary-btn">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>

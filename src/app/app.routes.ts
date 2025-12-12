@@ -12,11 +12,12 @@ export const routes: Routes = [
   { path: '', redirectTo: 'signup', pathMatch: 'full' },
   { path: 'signup', component: RegisterComponent },
   { path: 'login', component: LoginComponent }, 
-   {path:'userdashboard',component:UserDashboardComponent},
-    {path:'userprofile',component:UserprofileComponent},
-     {path:'userrides',component:UserridesComponent},
-      {path:'userridesnew',component:NewComponent},
-       {path:'userstats',component:UserstatsComponent},
+  { path: 'userdashboard', component: UserDashboardComponent },
+  { path: 'userprofile', component: UserprofileComponent },
+  { path: 'userrides', component: UserridesComponent },
+  { path: 'userridesnew', component: NewComponent },
+  { path: 'userstats', component: UserstatsComponent },
+  { path: 'admin/dashboard', loadComponent: () => import('./features/admin/admin-dashboard/admin-dashboard.component').then(m => m.AdminDashboardComponent) },
   { path: '**', redirectTo: 'signup' },
 
 ];
